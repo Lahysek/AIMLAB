@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -165,4 +166,172 @@
 
 <script src="ratatata.js"></script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIM TRAINER</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div id="logged-user">NEPŘIHLÁŠEN</div>
+<!-- MENU -->
+<div id="menu">
+  <div id="leaderboard">
+  <h2>LEADERBOARD</h2>
+  <div id="leaderboard-content">
+    Načítání...
+  </div>
+</div>
+  <div class="logo"><b>AIM TRAINER</b></div>
+  <div class="tagline"><b>Aim trainer je webová aplikace která vám pomůže zlepšit váš aim ve hrách.</b></div>
+  <div class="auth-buttons" id="auth-buttons">
+  <button onclick="openRegister()">REGISTRACE</button>
+  <button onclick="openLogin()">PŘIHLÁŠENÍ</button>
+</div>
+  <div class="menu-cards">
+  <div class="start-card" onclick="startGame()">
+    <div class="card-badge">MODE_01</div>
+    <div class="card-icon">⚡</div>
+    <div class="card-name">Speed Mode</div>
+    <div class="card-desc">Tref 30 terčů za co nejkratší čas.<br>Přesnost = rychlost.</div>
+  </div>
+
+  <div class="start-card" onclick="startReactionGame()">
+    <div class="card-badge">MODE_02</div>
+    <div class="card-icon">🎯</div>
+    <div class="card-name">Reaction Time</div>
+    <div class="card-desc">Počkej na terč a trefuj co nejrychleji.<br>5 kol — průměrný reakční čas.</div>
+  </div>
+  </div>
+</div>
+
+<!-- GAME -->
+<div id="game">
+  <div id="hud">
+    <div class="hud-left">
+      <button id="back-btn" onclick="goMenu()">← MENU</button>
+      <div class="hud-title">SPEED MODE</div>
+    </div>
+    <div class="hud-stats">
+      <div class="stat">
+        <div class="stat-label">Terče</div>
+        <div class="stat-value" id="stat-hits">0/30</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Čas</div>
+        <div class="stat-value" id="stat-time">0.00s</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Minuly</div>
+        <div class="stat-value" id="stat-miss">0</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="arena">
+    <div id="progress-bar"></div>
+
+    <div id="countdown">
+      <div id="countdown-num">3</div>
+      <div id="countdown-label">Připrav se</div>
+    </div>
+
+    <div id="results">
+      <div class="res-label">Výsledek</div>
+      <div class="res-time" id="res-time">0.000</div>
+      <div class="res-unit">sekund</div>
+      <div class="res-stats">
+        <div class="rs"><div class="rs-val" id="rs-hits">30</div><div class="rs-lbl">Hits</div></div>
+        <div class="rs"><div class="rs-val" id="rs-miss">0</div><div class="rs-lbl">Misses</div></div>
+        <div class="rs"><div class="rs-val" id="rs-avg">0ms</div><div class="rs-lbl">Avg / terč</div></div>
+      </div>
+      <div class="res-btns">
+        <button class="btn primary" onclick="startGame()">↺ ZNOVU</button>
+        <button class="btn" onclick="goMenu()">MENU</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REACTION GAME -->
+<div id="reaction-game">
+  <div id="reaction-hud">
+    <div class="hud-left">
+      <button id="reaction-back-btn" onclick="goMenu()">← MENU</button>
+      <div class="hud-title">REACTION TIME</div>
+    </div>
+    <div class="hud-stats">
+      <div class="stat">
+        <div class="stat-label">Kolo</div>
+        <div class="stat-value" id="rt-stat-round">1/5</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Poslední</div>
+        <div class="stat-value" id="rt-stat-last">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Nejlepší</div>
+        <div class="stat-value" id="rt-stat-best">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="reaction-arena">
+    <!-- Instrukce / čekání -->
+    <div id="rt-waiting">
+      <div id="rt-waiting-icon">👁</div>
+      <div id="rt-waiting-text">Čekej na terč...</div>
+      <div id="rt-waiting-sub">Klikni ihned po zobrazení</div>
+    </div>
+
+    <!-- Penalizace za předčasné kliknutí -->
+    <div id="rt-tooearly">
+      <div class="rt-early-icon">✗</div>
+      <div class="rt-early-text">PŘÍLIŠ BRZY</div>
+      <div class="rt-early-sub">Počkej na terč!</div>
+    </div>
+
+    <!-- Výsledky -->
+    <div id="rt-results">
+      <div class="res-label">Průměrný čas</div>
+      <div class="res-time" id="rt-res-avg">0</div>
+      <div class="res-unit">milisekund</div>
+      <div class="res-stats">
+        <div class="rs"><div class="rs-val" id="rt-rs-best">—</div><div class="rs-lbl">Nejlepší</div></div>
+        <div class="rs"><div class="rs-val" id="rt-rs-worst">—</div><div class="rs-lbl">Nejhorší</div></div>
+        <div class="rs"><div class="rs-val" id="rt-rs-early">0</div><div class="rs-lbl">Too Early</div></div>
+      </div>
+      <div class="res-btns">
+        <button class="btn primary" onclick="startReactionGame()">↺ ZNOVU</button>
+        <button class="btn" onclick="goMenu()">MENU</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="auth-modal">
+
+  <div class="auth-box">
+
+    <h2 id="auth-title">LOGIN</h2>
+
+    <input type="text" id="username" placeholder="Username">
+
+    <input type="password" id="password" placeholder="Password">
+
+    <button id="auth-submit">POTVRDIT</button>
+
+    <button onclick="closeAuth()">ZAVŘÍT</button>
+
+  </div>
+
+</div>
+
+<script src="ratatata.js"></script>
+</body>
+>>>>>>> 8e9c09788dec9650bd678832b12820cca60e800f
 </html>
