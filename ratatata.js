@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const TOTAL_TARGETS = 30;
 const MAX_SIMULTANEOUS = 3;
 const PADDING = 55;
@@ -556,7 +555,7 @@ function logout(){
   localStorage.removeItem("username");
 
   location.reload();
-=======
+
 const TOTAL_TARGETS = 30;
 const MAX_SIMULTANEOUS = 3;
 const PADDING = 55;
@@ -1102,5 +1101,4 @@ async function loadLeaderboard(){
       </div>
     `;
   });
->>>>>>> 8e9c09788dec9650bd678832b12820cca60e800f
 }
